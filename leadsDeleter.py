@@ -1,21 +1,30 @@
 import pyautogui
 
+clickPosX = 1545;
+posToDeleteButtonFactor = 78;
+firstButtonPosY= 732;
+firstClickDuration = 0.8;
+secondClickDuration = 0.6;
+
 def deleteLeads(amount):
     print('Iniciando exclusão de leads...')
     position = 1
     for lead in range(amount):
         print(f'Excluindo lead {lead+1} de {amount} - {round((lead+1)/amount*100, 2)}%')
         if (position==1):
-            pyautogui.click(1417, 623, duration=0.6)
-            pyautogui.click(1412, 703, duration=0.4)
+            yPos = firstButtonPosY;
+            pyautogui.click(clickPosX, yPos, duration=firstClickDuration)
+            pyautogui.click(clickPosX, yPos+posToDeleteButtonFactor, duration=secondClickDuration)
             position = 2
         elif(position==2):
-            pyautogui.click(1417, 573, duration=0.6)
-            pyautogui.click(1412, 653, duration=0.4)
+            yPos = firstButtonPosY - 45;
+            pyautogui.click(clickPosX, yPos, duration=firstClickDuration)
+            pyautogui.click(clickPosX, yPos+posToDeleteButtonFactor, duration=secondClickDuration)
             position = 3
         else:
-            pyautogui.click(1417, 524, duration=0.6)
-            pyautogui.click(1412, 604, duration=0.4)
+            yPos = firstButtonPosY - 98;
+            pyautogui.click(clickPosX, yPos, duration=firstClickDuration)
+            pyautogui.click(clickPosX, yPos+posToDeleteButtonFactor, duration=secondClickDuration)
             position = 1
         pyautogui.countdown(1)
         pyautogui.keyDown('enter')
