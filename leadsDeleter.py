@@ -3,14 +3,16 @@ import pyautogui
 clickPosX = 1545;
 posToDeleteButtonFactor = 78;
 firstButtonPosY= 732;
-firstClickDuration = 0.8;
-secondClickDuration = 0.6;
+firstClickDuration = 2.0;
+secondClickDuration = 0.5;
 
 def deleteLeads(amount):
     print('Iniciando exclusão de leads...')
     position = 1
     for lead in range(amount):
-        print(f'Excluindo lead {lead+1} de {amount} - {round((lead+1)/amount*100, 2)}%')
+        estimated_time = (amount - lead - 1) * (firstClickDuration + secondClickDuration + 1)  # Including countdown
+        minutes, seconds = divmod(estimated_time, 60)
+        print(f'Excluindo lead {lead+1} de {amount} - {round((lead+1)/amount*100, 1)}% - Tempo estimado restante: {int(minutes)}m {int(seconds)}s')
         if (position==1):
             yPos = firstButtonPosY;
             pyautogui.click(clickPosX, yPos, duration=firstClickDuration)
